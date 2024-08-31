@@ -8,7 +8,7 @@ import { GetApiData } from "@/Api/api";
 const Table = () => {
   const [allData, setAllData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 20;
 
   useEffect(() => {
     const fetchApiData = async () => {
@@ -16,11 +16,13 @@ const Table = () => {
         const getData = await GetApiData();
         const DATA = getData.data;
         setAllData(DATA);
+        console.log("allData",DATA)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchApiData();
+   
   }, []);
 
   const totalPages = Math.ceil(allData.length / itemsPerPage);
@@ -40,13 +42,13 @@ const Table = () => {
     <>
     <div className="py-10">
       <center className="uppercase text-xl -tracking-tighter font-extrabold">
-        PagInetion
+        PagInetion <span className="px-4"> Prectice</span>
       </center>
     </div>
       <div className="">
-        <div className="px-32 mx-auto w-[1000px] border border-black h-[500px] overflow-auto">
+        <div className="px-32 mx-auto w-[1000px]  h-[500px] overflow-auto removeScrool">
           <table className="min-w-full bg-white border border-gray-200 py-32">
-            <thead className="bg-gray-100">
+            <thead className="bg-green-200 sticky top-0">
               <tr>
                 <th className="py-2 px-4 border-b text-left text-gray-600 capitalize">Amount</th>
                 <th className="py-2 px-4 border-b text-left text-gray-600 capitalize">Dollar</th>
@@ -54,7 +56,7 @@ const Table = () => {
                 <th className="py-2 px-4 border-b text-left text-gray-600 capitalize">Network</th>
               </tr>
             </thead>
-            <tbody className="overflow-y-auto">
+            <tbody className="overflow-y-auto ">
               {currentData.length > 0 ? (
                 currentData.map((item, index) => (
                   <tr key={index} className="hover:bg-gray-100">
