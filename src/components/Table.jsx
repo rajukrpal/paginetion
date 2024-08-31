@@ -121,7 +121,7 @@ const Table = () => {
         const getData = await GetApiData();
         const DATA = getData?.data || []; // Safely access `data`
         setAllData(DATA);
-        console.log("allData", DATA);
+        // console.log("allData", DATA);
       } catch (error) {
         console.error("Error fetching data:", error);
         setAllData([]); // Set `allData` to an empty array on error
