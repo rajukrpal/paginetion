@@ -52,17 +52,17 @@ const Task = () => {
     useEffect(() => {
 
         console.log("data",data)
-        const aggregatedData = data.reduce((acc, curr) => {
-            const existingEmployee = acc.find(item => item.name === curr.name);
-            if (existingEmployee) {
-                existingEmployee.salary += curr.salary;
+        const setobject = data.reduce((prev, cur) => {
+            const allData = prev.find(item => item.name === cur.name);
+            if (allData) {
+                allData.salary += cur.salary;
             } else {
-                acc.push({ name: curr.name, salary: curr.salary });
+                prev.push({ name: cur.name, salary: cur.salary });
             }
-            return acc;
+            return prev;
         }, []);
 
-        console.log("Aggregated Data", aggregatedData);
+        console.log("Aggregated Data", setobject);
 
     }, [])
 
